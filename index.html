@@ -343,7 +343,44 @@
         .audio-player-container button:hover {
             color: #0056b3;
         }
+
+        /* Contact Info Styling */
+        .footer-contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #bbb;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: white;
+        }
+
+        .contact-item i {
+            font-size: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-contact {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
     </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header class="hero-section">
@@ -376,7 +413,7 @@
     <section class="product-image-section">
         <div class="container">
             <div class="image-placeholder">
-                <img src="/public/image1.png" alt="ChillGuard Smart Parcel Locker">
+                <img src="images/image1.png" alt="ChillGuard Smart Parcel Locker">
             </div>
         </div>
     </section>
@@ -403,6 +440,16 @@
     <footer>
         <div class="container">
             <p>&copy; 2025 ChillGuard. All rights reserved.</p>
+            <div class="footer-contact">
+                <a href="mailto:ofek54@gmail.com" class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>ofek54@gmail.com</span>
+                </a>
+                <div class="contact-item">
+                    <i class="fas fa-location-dot"></i>
+                    <span>Tel Aviv, Israel</span>
+                </div>
+            </div>
         </div>
     </footer>
 
