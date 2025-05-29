@@ -343,44 +343,7 @@
         .audio-player-container button:hover {
             color: #0056b3;
         }
-
-        /* Contact Info Styling */
-        .footer-contact {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #bbb;
-            transition: color 0.3s ease;
-        }
-
-        .contact-item:hover {
-            color: white;
-        }
-
-        .contact-item i {
-            font-size: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .footer-contact {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-            }
-        }
     </style>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header class="hero-section">
@@ -413,7 +376,7 @@
     <section class="product-image-section">
         <div class="container">
             <div class="image-placeholder">
-                <img src="./image1.png" alt="ChillGuard Smart Parcel Locker">
+                <img src="/image1.png" alt="ChillGuard Smart Parcel Locker">
             </div>
         </div>
     </section>
@@ -440,22 +403,12 @@
     <footer>
         <div class="container">
             <p>&copy; 2025 ChillGuard. All rights reserved.</p>
-            <div class="footer-contact">
-                <a href="mailto:ofek54@gmail.com" class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>ofek54@gmail.com</span>
-                </a>
-                <div class="contact-item">
-                    <i class="fas fa-location-dot"></i>
-                    <span>Tel Aviv, Israel</span>
-                </div>
-            </div>
         </div>
     </footer>
 
     <div class="audio-player-container">
         <button id="muteBtn" onclick="toggleMute()">🔊</button>
-        <audio id="bgMusic" loop>
+        <audio id="bgMusic" loop autoplay>
             <source src="background-music.mp3.mp3" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
@@ -515,27 +468,36 @@
         // Audio Player Controls
         const audio = document.getElementById('bgMusic');
         const muteBtn = document.getElementById('muteBtn');
-        let hasStartedPlaying = false;
 
-        // Function to start playing
-        function startPlaying() {
-            if (!hasStartedPlaying) {
-                audio.volume = 1;
-                audio.muted = false;
-                audio.play()
-                    .then(() => {
-                        console.log('Playing...');
-                        muteBtn.textContent = '🔊';
-                        hasStartedPlaying = true;
-                    })
-                    .catch((error) => {
-                        console.log('Playback failed:', error);
-                    });
-            }
+        // Function to try playing
+        function tryToPlay() {
+            audio.volume = 1;
+            audio.muted = false;
+            audio.play()
+                .then(() => {
+                    console.log('Playing...');
+                    muteBtn.textContent = '🔊';
+                })
+                .catch((error) => {
+                    console.log('Playback failed, trying again...', error);
+                    // Try again after a short delay
+                    setTimeout(tryToPlay, 100);
+                });
         }
 
-        // Listen for scroll event
-        window.addEventListener('scroll', startPlaying, { once: true });
+        // Try to play immediately
+        tryToPlay();
+
+        // Also try when the document is ready
+        document.addEventListener('DOMContentLoaded', tryToPlay);
+
+        // And when the window loads
+        window.addEventListener('load', tryToPlay);
+
+        // Try to play on any user interaction
+        document.addEventListener('click', tryToPlay, { once: true });
+        document.addEventListener('touchstart', tryToPlay, { once: true });
+        document.addEventListener('keydown', tryToPlay, { once: true });
 
         function toggleMute() {
             if (audio.muted) {
