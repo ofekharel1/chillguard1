@@ -1,0 +1,5 @@
+node_modules/
+.env
+.DS_Store
+*.mp3
+background-music.mp3.mp3 

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChillGuard - Smart Parcel Delivery Box</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Header/Hero Section */
+        .hero-section {
+            background: linear-gradient(to right, #d1dce5, #027afb);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .hero-section h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+
+        .hero-section h2 {
+            font-size: 1.5em;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 60px 20px;
+            background-color: rgb(236, 241, 243);
+        }
+
+        .benefits-section h3 {
+            font-size: 2.2em;
+            margin-bottom: 40px;
+            color: #007bff;
+        }
+
+        .benefits-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .benefit-item {
+            flex-basis: calc(33% - 40px);
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            text-align: left;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-item h4 {
+            font-size: 1.5em;
+            color: #0056b3;
+            margin-bottom: 15px;
+        }
+
+        .benefit-item p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        /* Product Image Section */
+        .product-image-section {
+            padding: 60px 20px;
+            background-color: #d1e7f0;
+        }
+
+        .image-placeholder {
+            max-width: 500px; /* Adjust as needed */
+            margin: 0 auto;
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            height: auto;
+            display: block; /* Removes extra space below image */
+            transition: transform 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        .image-placeholder img:hover {
+            transform: translateY(-10px); /* Move up by 10px on hover */
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background-color: #007bff;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cta-section h3 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        /* Email Signup Section */
+        .signup-section {
+            padding: 60px 20px;
+            background-color: white;
+        }
+
+        .signup-section h3 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .signup-section p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .email-form {
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center;
+            gap: 15px;
+        }
+
+        .email-form input[type="email"] {
+            padding: 15px 20px;
+            width: 350px;
+            max-width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        .email-form button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .email-form button[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .form-status-message {
+            margin-top: 15px;
+            font-size: 1em;
+            font-weight: 500;
+        }
+        .form-status-message.success {
+            color: #28a745; /* Green */
+        }
+        .form-status-message.error {
+            color: #dc3545; /* Red */
+        }
+        .form-status-message.info {
+            color: #007bff; /* Blue */
+        }
+
+        /* Gemini Feature Styling */
+        .gemini-feature-container {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: #f0f8ff; /* Light blue background */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+
+        .gemini-feature-container h4 {
+            color: #0056b3;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .gemini-feature-container ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+
+        .gemini-feature-container li {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .gemini-loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #007bff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none; /* Hidden by default */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-section h2 {
+                font-size: 1.2em;
+            }
+
+            .benefits-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .benefit-item {
+                flex-basis: 90%;
+                max-width: 400px;
+            }
+
+            .cta-section h3 {
+                font-size: 2em;
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+
+            .email-form input[type="email"] {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 2em;
+            }
+            .hero-section h2 {
+                font-size: 1em;
+            }
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 18px;
+            }
+        }
+
+        /* Audio Player Styling */
+        .audio-player-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 123, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 50%;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .audio-player-container:hover {
+            background: rgba(0, 123, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .audio-player-container button {
+            background: none;
+            border: none;
+            color: #007bff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .audio-player-container button:hover {
+            color: #0056b3;
+        }
+
+        /* Contact Info Styling */
+        .footer-contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #bbb;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: white;
+        }
+
+        .contact-item i {
+            font-size: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-contact {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="hero-section">
+        <div class="container">
+            <h1>Never Miss a Delivery. keep It Chill.</h1>
+            <h2>Your parcels and groceries, protected and perfectly preserved, right at your doorstep.</h2>
+        </div>
+    </header>
+
+    <section class="benefits-section">
+        <div class="container">
+            <h3>Why You Need the ChillGuard Smart Parcel Box:</h3>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <h4>Ultimate Security</h4>
+                    <p>Say goodbye to porch pirates. Our robust design keeps your deliveries safe until you're ready to retrieve them.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Temperature Controlled</h4>
+                    <p>Groceries, medications, or delicate flowers – the integrated refrigerated cell ensures everything stays fresh, no matter the weather.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Smart & Convenient</h4>
+                    <p>Receive notifications, grant access remotely, and manage deliveries from your smartphone. Your front porch just got smarter.</p>
+                </div>
+            </div>
+            </div>
+    </section>
+
+    <section class="product-image-section">
+        <div class="container">
+            <div class="image-placeholder">
+                <img src="./image1.png" alt="ChillGuard Smart Parcel Locker">
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h3>Ready to Upgrade Your Delivery Experience?</h3>
+            <button class="cta-button" onclick="window.location.href='#email-signup'">Join Waitlist</button>
+        </div>
+    </section>
+
+    <section id="email-signup" class="signup-section">
+        <div class="container">
+            <h3>Stay Informed</h3>
+            <p>Enter your email below to receive updates, launch details, and exclusive offers.</p>
+            <form class="email-form" id="signupForm">
+                <input type="email" placeholder="Your Email Address" required>
+                <button type="submit">Notify Me</button>
+                <div class="form-status-message"></div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ChillGuard. All rights reserved.</p>
+            <div class="footer-contact">
+                <a href="mailto:ofek54@gmail.com" class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>ofek54@gmail.com</span>
+                </a>
+                <div class="contact-item">
+                    <i class="fas fa-location-dot"></i>
+                    <span>Tel Aviv, Israel</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="audio-player-container">
+        <button id="muteBtn" onclick="toggleMute()">🔊</button>
+        <audio id="bgMusic" loop>
+            <source src="background-music.mp3.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const emailInput = this.querySelector('input[type="email"]');
+            const email = emailInput.value.trim();
+            const form = this;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const messageArea = form.querySelector('.form-status-message');
+
+            // Clear previous messages
+            messageArea.textContent = '';
+            messageArea.className = 'form-status-message';
+
+            if (!email) {
+                messageArea.classList.add('error');
+                messageArea.textContent = 'Please enter a valid email address.';
+                return;
+            }
+
+            try {
+                submitButton.disabled = true;
+                messageArea.classList.add('info');
+                messageArea.textContent = 'Submitting your email...';
+
+                const response = await fetch('http://localhost:3000/api/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    messageArea.classList.add('success');
+                    messageArea.textContent = data.message;
+                    emailInput.value = '';
+                } else {
+                    throw new Error(data.message || 'Submission failed');
+                }
+                
+            } catch (error) {
+                console.error('Submission error:', error);
+                messageArea.classList.add('error');
+                messageArea.textContent = error.message || 'An error occurred. Please try again later.';
+            } finally {
+                submitButton.disabled = false;
+            }
+        });
+
+        // Audio Player Controls
+        const audio = document.getElementById('bgMusic');
+        const muteBtn = document.getElementById('muteBtn');
+        let hasStartedPlaying = false;
+
+        // Function to start playing
+        function startPlaying() {
+            if (!hasStartedPlaying) {
+                audio.volume = 1;
+                audio.muted = false;
+                audio.play()
+                    .then(() => {
+                        console.log('Playing...');
+                        muteBtn.textContent = '🔊';
+                        hasStartedPlaying = true;
+                    })
+                    .catch((error) => {
+                        console.log('Playback failed:', error);
+                    });
+            }
+        }
+
+        // Listen for scroll event
+        window.addEventListener('scroll', startPlaying, { once: true });
+
+        function toggleMute() {
+            if (audio.muted) {
+                audio.muted = false;
+                muteBtn.textContent = '🔊';
+                if (audio.paused) {
+                    audio.play();
+                }
+            } else {
+                audio.muted = true;
+                muteBtn.textContent = '🔈';
+            }
+        }
+    </script>
+</body>
+</html>

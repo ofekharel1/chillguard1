@@ -1,0 +1,298 @@
+<style>
+    /* General Body Styling */
+    body {
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f4f4f4;
+        scroll-behavior: smooth;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* Header/Hero Section */
+    .hero-section {
+        background: linear-gradient(to right, #007bff, #0056b3);
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .hero-section h1 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 3.5em;
+        margin-bottom: 15px;
+        line-height: 1.1;
+    }
+
+    .hero-section h2 {
+        font-size: 1.5em;
+        font-weight: 300;
+        opacity: 0.9;
+    }
+
+    /* Benefits Section */
+    .benefits-section {
+        padding: 60px 20px;
+        background-color: white;
+    }
+
+    .benefits-section h3 {
+        font-size: 2.2em;
+        margin-bottom: 40px;
+        color: #007bff;
+    }
+
+    .benefits-grid {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    .benefit-item {
+        flex-basis: calc(33% - 40px);
+        background-color: #f9f9f9;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease;
+        text-align: left;
+    }
+
+    .benefit-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .benefit-item h4 {
+        font-size: 1.5em;
+        color: #0056b3;
+        margin-bottom: 15px;
+    }
+
+    .benefit-item p {
+        font-size: 1em;
+        color: #555;
+    }
+
+    /* Product Image Section */
+    .product-image-section {
+        padding: 60px 20px;
+        background-color: #e9ecef;
+    }
+
+    .image-placeholder {
+        max-width: 500px; /* Adjust as needed */
+        margin: 0 auto;
+    }
+
+    .image-placeholder img {
+        width: 100%;
+        height: auto;
+        display: block; /* Removes extra space below image */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Call to Action Section */
+    .cta-section {
+        background-color: #007bff;
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .cta-section h3 {
+        font-size: 2.5em;
+        margin-bottom: 30px;
+    }
+
+    .cta-button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 18px 40px;
+        border: none;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        display: inline-block;
+    }
+
+    .cta-button:hover {
+        background-color: #45a049;
+        transform: translateY(-2px);
+    }
+
+    /* Email Signup Section */
+    .signup-section {
+        padding: 60px 20px;
+        background-color: white;
+    }
+
+    .signup-section h3 {
+        font-size: 2.2em;
+        margin-bottom: 20px;
+        color: #007bff;
+    }
+
+    .signup-section p {
+        font-size: 1.1em;
+        margin-bottom: 30px;
+    }
+
+    .email-form {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center;
+        gap: 15px;
+    }
+
+    .email-form input[type="email"] {
+        padding: 15px 20px;
+        width: 350px;
+        max-width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+        box-sizing: border-box;
+    }
+
+    .email-form button[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .email-form button[type="submit"]:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+    }
+
+    .form-status-message {
+        margin-top: 15px;
+        font-size: 1em;
+        font-weight: 500;
+    }
+    .form-status-message.success {
+        color: #28a745; /* Green */
+    }
+    .form-status-message.error {
+        color: #dc3545; /* Red */
+    }
+    .form-status-message.info {
+        color: #007bff; /* Blue */
+    }
+
+    /* Gemini Feature Styling */
+    .gemini-feature-container {
+        margin-top: 40px;
+        padding: 30px;
+        background-color: #f0f8ff; /* Light blue background */
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        text-align: left;
+    }
+
+    .gemini-feature-container h4 {
+        color: #0056b3;
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .gemini-feature-container ul {
+        list-style-type: disc;
+        padding-left: 25px;
+    }
+
+    .gemini-feature-container li {
+        margin-bottom: 10px;
+        font-size: 1.1em;
+    }
+
+    .gemini-loading-spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-left-color: #007bff;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+        display: none; /* Hidden by default */
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Footer */
+    footer {
+        background-color: #333;
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+        font-size: 0.9em;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero-section h1 {
+            font-size: 2.5em;
+        }
+
+        .hero-section h2 {
+            font-size: 1.2em;
+        }
+
+        .benefits-grid {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .benefit-item {
+            flex-basis: 90%;
+            max-width: 400px;
+        }
+
+        .cta-section h3 {
+            font-size: 2em;
+        }
+
+        .email-form {
+            flex-direction: column;
+        }
+
+        .email-form input[type="email"] {
+            width: 80%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-section h1 {
+            font-size: 2em;
+        }
+        .hero-section h2 {
+            font-size: 1em;
+        }
+        .cta-button {
+            padding: 15px 30px;
+            font-size: 18px;
+        }
+    }
+</style>
